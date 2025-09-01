@@ -3,10 +3,11 @@
 
 #include <GL/freeglut.h>
 #include <string>
+#include <iostream>
 
 class Button {
-private:
-    // member variables
+public:
+    float r,g,b,thick;
     float x;
     float y;
     float w;
@@ -14,8 +15,6 @@ private:
     bool pressed;
     std::string text;
 
-public:
-    // default constructor
     Button() {
         x = 0.0f;
         y = 0.0f;
@@ -25,38 +24,75 @@ public:
         text = "Button";
     }
 
-    // parametrized constructor
-    Button(float _x, float _y, std::string _text) {
-        x = _x;
-        y = _y;
+    Button(float x, float y, std::string _text) {
+        this -> x = x;
+        this -> y = y;
         w = 0.4f;
         h = 0.2f;
+        r = 0.0;
+        g = 0.0;
+        b = 0.0;
+        thick = 1.0;
         pressed = false;
         text = _text;
     }
-
+    Button(float _x, float _y, float _w, float _h){
+        x = _x;
+        y = _y;
+        w = _w;
+        h = _h;
+        thick = 3.0;
+        r = 0.0;
+        g = 0.0;
+        b = 0.0;
+        text = "";
+    }
+    Button(float x, float y, float w, float h, float r, float g, float b){
+        this -> x = x;
+        this -> y = y;
+        this -> w = w;
+        this -> h = h;
+        this -> r = r;
+        this -> g = g;
+        this -> b = b;
+        text = "";
+    }
+    void updateRGB(float _r, float _g, float _b){
+        r = _r;
+        g = _g;
+        b = _b;
+        
+    }
+    void updateT(float _thick){
+        thick = _thick;
+       
+    }
     void draw() {
         float padding = 0.06f;
 
-        float textWidth = 0;
-        for (int i = 0; i < text.length(); i++) {
-            textWidth += glutBitmapWidth(GLUT_BITMAP_9_BY_15, text[i]);
+        if (text.length()>0){
+            float textWidth = 0;
+            for (int i = 0; i < text.length(); i++) {
+                textWidth += glutBitmapWidth(GLUT_BITMAP_9_BY_15, text[i]);
+            }
+            textWidth = 2 * (textWidth / 400);
+            w = textWidth + padding;
         }
-        textWidth = 2 * (textWidth / 400);
-        w = textWidth + padding;
 
         // white polygon
         glColor3f(1.0f, 1.0f, 1.0f);
-        glBegin(GL_POLYGON);
-            glVertex2f(x, y);
-            glVertex2f(x + w, y);
-            glVertex2f(x + w, y - h);
-            glVertex2f(x, y - h);
-        glEnd();
+        
         
         // black border
-        glLineWidth(1.0f);
-        glColor3f(0.0f, 0.0f, 0.0f);
+        glLineWidth(thick);
+        glColor3f(1-r,1-g,1-b);
+        glBegin(GL_POLYGON);
+            glVertex2f(x,y);
+            glVertex2f(x+w,y);
+            glVertex2f(x+w,y-h);
+            glVertex2f(x,y-h);
+        glEnd();
+        glColor3f(r, g, b);
         glBegin(GL_LINES);
             glVertex2f(x, y);
             glVertex2f(x + w, y);
@@ -85,12 +121,25 @@ public:
         // const unsigned char* temp = (unsigned char*) text.c_str();
         // glutBitmapString(GLUT_BITMAP_9_BY_15, temp);
     }
+    
 
     bool contains(float mx, float my) {
         if (mx >= x && mx <= x + w && my <= y && my >= y - h) {
             return true;
         }
         return false;
+    }
+
+    void getXY(float XYWH[4]){
+        XYWH[0] = x;
+        XYWH[1] = y;
+        XYWH[2] = w;
+        XYWH[3] = h;
+
+    }
+
+    void setX(float x){
+        this->x = x;
     }
 };
 
