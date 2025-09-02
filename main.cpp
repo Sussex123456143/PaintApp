@@ -12,7 +12,7 @@ int main(int argc,char** argv) {
 
     app->setController(myController);
 
-    app->setTitle("Paint App");
+    app->setTitle("UC Merced Glut App");
 
     app->run();
     
