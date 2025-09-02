@@ -1,4 +1,4 @@
-#include <GL/freeglut.h>
+#include <GLFW/glfw3.h>
 #include "GlutApp.h"
 #include "Controller.h"
 
@@ -12,7 +12,7 @@ int main(int argc,char** argv) {
 
     app->setController(myController);
 
-    app->setTitle("UC Merced Glut App");
+    app->setTitle("Paint App");
 
     app->run();
     

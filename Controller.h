@@ -4,7 +4,7 @@
 #include <iostream>
 #include <new>
 #include <vector>
-#include <GL/freeglut.h>
+#include <GLFW/glfw3.h>
 #include "AppController.h"
 #include "Button.h"
 #include "Point.h"

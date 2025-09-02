@@ -2,7 +2,7 @@
 #define GLUTAPP_H
 
 #include <stdexcept>
-#include <GL/freeglut.h>
+#include <GLFW/glfw3.h>
 #include "AppController.h"
 
 struct GlutApp;

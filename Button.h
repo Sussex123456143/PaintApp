@@ -1,7 +1,7 @@
 #ifndef BUTTON_H
 #define BUTTON_H
 
-#include <GL/freeglut.h>
+#include <GLFW/glfw3.h>
 #include <string>
 #include <iostream>
 

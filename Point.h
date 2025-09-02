@@ -4,7 +4,7 @@
 #include <GL/gl.h>
 #include <vector>
 #include <cmath>
-#include <GL/freeglut.h>
+#include <GLFW/glfw3.h>
 #include <string>
 #include <iostream>
 
