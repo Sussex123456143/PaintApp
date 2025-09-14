@@ -12,13 +12,7 @@ test:
 
 .PHONY: pull
 pull:
-ifeq ($(shell git rev-parse --is-inside-work-tree 2>/dev/null),true)
-	@git reset --hard
-	@git clean -fdx
-	@git pull --ff-only
-else
-	@echo "No git repository found in the current directory"
-endif
+	@echo The pull feature has been disabled for this project
 
 .PHONY: clean
 clean:
